@@ -1,22 +1,36 @@
 package restaurantManagementModule;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Restaurant {
+    private long id;
     private String name;
-    private String cuisineType;
+    private CuisineType cuisineType;
     private String location;
     private LocalTime openTime;
     private LocalTime closeTime;
-    private boolean status;
+    private boolean isActive;
+    private List<MenuItem> menu;
 
-    public Restaurant(String name, String cuisineType, String location, LocalTime openTime, LocalTime closeTime, boolean status) {
+    public Restaurant(long id, String name, CuisineType cuisineType, String location, LocalTime openTime, LocalTime closeTime, boolean isActive) {
+        this.id = id;
         this.name = name;
         this.cuisineType = cuisineType;
         this.location = location;
         this.openTime = openTime;
         this.closeTime = closeTime;
-        this.status = status;
+        this.isActive = isActive;
+        this.menu = new ArrayList<>();
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -27,11 +41,11 @@ public class Restaurant {
         this.name = name;
     }
 
-    public String getCuisineType() {
+    public CuisineType getCuisineType() {
         return cuisineType;
     }
 
-    public void setCuisineType(String cuisineType) {
+    public void setCuisineType(CuisineType cuisineType) {
         this.cuisineType = cuisineType;
     }
 
@@ -59,22 +73,41 @@ public class Restaurant {
         this.closeTime = closeTime;
     }
 
-    public boolean isStatus() {
-        return status;
+
+    public void setActive(boolean status) {
+        this.isActive = status;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public boolean isActive() {
+        return this.isActive;
+    }
+
+    public List<MenuItem> getMenu() {
+        return menu;
+    }
+
+    public void setMenu(List<MenuItem> menu) {
+        this.menu = menu;
     }
 
     @Override
     public String toString() {
-        return "Restaurant:\n" +
-                "name='" + name + '\'' +
+        return "Restaurant Details:\n" +
+                "ID='" + id + '\'' +
+                ", name='" + name + '\'' +
                 ", cuisineType='" + cuisineType + '\'' +
                 ", location='" + location + '\'' +
                 ", openTime=" + openTime +
                 ", closeTime=" + closeTime +
-                ", status=" + ((status)?"Active\n": "Inactive\n");
+                ", isActive=" + ((isActive)?"Active\n": "Inactive\n");
+    }
+
+    public void displayMenu() {
+        System.out.println("Welcome to " + this.getName() + ": A " + getClass().getSimpleName() + "!\nMenu Items:");
+        for(MenuItem item: this.getMenu()) {
+            System.out.printf("%-25s%-25s₹%-25s", item.getItemName(), item.getType(), item.getItemPrice());
+            System.out.println();
+        }
+        System.out.println();
     }
 }
