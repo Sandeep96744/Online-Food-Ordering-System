@@ -73,7 +73,6 @@ public class Restaurant {
         this.closeTime = closeTime;
     }
 
-
     public void setActive(boolean status) {
         this.isActive = status;
     }
@@ -105,7 +104,7 @@ public class Restaurant {
     public void displayMenu() {
         System.out.println("Welcome to " + this.getName() + ": A " + getClass().getSimpleName() + "!\nMenu Items:");
         for(MenuItem item: this.getMenu()) {
-            System.out.printf("%-25s%-25s₹%-25s", item.getItemName(), item.getType(), item.getItemPrice());
+            System.out.printf("%-25s%-15s₹%s", item.getItemName(), item.getType(), item.getItemPrice());
             System.out.println();
         }
         System.out.println();

@@ -26,7 +26,6 @@ public class RestaurantRepositoryImplementation implements RestaurantRepository 
     public void updateMenuItem(Restaurant restaurant, MenuItem item) {
         List<MenuItem> menu = restaurant.getMenu();
         menu.add(item);
-        restaurant.setMenu(menu);
     }
 
     @Override
