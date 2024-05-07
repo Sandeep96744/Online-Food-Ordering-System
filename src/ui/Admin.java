@@ -1,6 +1,8 @@
 package ui;
 
 import restaurantManagementModule.*;
+import service.CustomerService;
+import service.CustomerServiceImplementation;
 import service.RestaurantService;
 import service.RestaurantServiceImplementation;
 
@@ -11,7 +13,7 @@ public class Admin {
     public static void main(String[] args) {
         RestaurantService repo = new RestaurantServiceImplementation();
 
-        // creating restaurants
+        // adding restaurants
         Restaurant restaurant1 = new FastFoodRestaurant(101, "Bigg Boss", "Kolkata",
                 LocalTime.parse("09:00"), LocalTime.parse("19:00"), true);
 
@@ -39,17 +41,59 @@ public class Admin {
         repo.updateMenuItem(restaurant3, new MenuItem("Panner Chilli", ItemType.VEG, 299.0));
 
         // Finding all active restaurants
-        List<Restaurant> restaurantList = repo.findAllActiveRestaurant();
-        System.out.println("Active Restaurants: ");
-        restaurantList.forEach(restaurant -> System.out.println(restaurant.getName()));
+//        List<Restaurant> restaurantList = repo.findAllActiveRestaurant();
+//        System.out.println("Active Restaurants:");
+//        restaurantList.forEach(restaurant -> System.out.println(restaurant.getName()));
 
-        repo.deActivateRestaurant(101);
-        repo.activateRestaurant(102);
+//
+//        // after deactivating restaurants, finding active ones
+//        repo.deActivateRestaurant(101);
+//        repo.activateRestaurant(102);
+//
+//
+//        restaurantList = repo.findAllActiveRestaurant();
+//        System.out.println("\nActive Restaurants:");
+//        restaurantList.forEach(restaurant -> {
+//            System.out.println(restaurant.getName());
+//            restaurant.displayMenu();
+//        });
+//
+//
+//        // finding restaurants by location
+//        String location = "Kolkata";
+//        restaurantList = repo.findRestaurantByLocation(location);
+//        System.out.println("\nRestaurants in " + location + ":");
+//        restaurantList.forEach(restaurant -> System.out.println(restaurant.getName()));
+//
+//
+//        CuisineType type = CuisineType.FINE_DINING_RESTAURANT;
+//        restaurantList = repo.findRestaurantByType(type);
+//        System.out.println("\nRestaurants in " + type + ":");
+//        restaurantList.forEach(restaurant -> System.out.println(restaurant.getName()));
+//
 
 
-        restaurantList = repo.findAllActiveRestaurant();
-        System.out.println("\nActive Restaurants: ");
-        restaurantList.forEach(restaurant -> System.out.println(restaurant.getName()));
+
+
+        Customer customer = new Customer("Karan");
+
+        CustomerService customerService = new CustomerServiceImplementation(repo);
+        List<Restaurant> list = customerService.findAllActiveRestaurant();
+        System.out.println("Active Restaurants:");
+        list.forEach(restaurant -> System.out.println(restaurant.getName()));
+
+        Restaurant restaurant = list.get(1);
+        restaurant.displayMenu();
+        String item = "paneer chilli";
+        List<MenuItem> menu = restaurant.getMenu();
+        MenuItem menuItem = menu.stream().filter(e -> e.getItemName().equalsIgnoreCase(item)).findAny().get();
+        customerService.addItem(menuItem, 1);
+
+
+
+//        customerService.addItem(restaurant1.getMenu().get(0), 1);
+//        customerService.reviewCartItem();
+
 
     }
 }

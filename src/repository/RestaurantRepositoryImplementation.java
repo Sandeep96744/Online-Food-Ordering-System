@@ -10,7 +10,11 @@ import java.util.Map;
 
 public class RestaurantRepositoryImplementation implements RestaurantRepository {
 
-    Map<Long, Restaurant> restaurants = new HashMap<>();
+    private Map<Long, Restaurant> restaurants;
+
+    public RestaurantRepositoryImplementation() {
+        restaurants = new HashMap<>();
+    }
 
     @Override
     public void addRestaurant(Restaurant restaurant) {
@@ -56,5 +60,24 @@ public class RestaurantRepositoryImplementation implements RestaurantRepository 
     @Override
     public List<Restaurant> findAllDeactivatedRestaurant() {
         return restaurants.values().stream().filter(restaurant -> !restaurant.isActive()).toList();
+    }
+
+    @Override
+    public void order(Map<MenuItem, Integer> cart) {
+        System.out.println("\n\t***** Ordered Items *****");
+        int i = 1;
+        for(MenuItem item: cart.keySet()) {
+            System.out.printf("%d. %s | %s | ₹%s | Quantity: %s", i++, item.getItemName(), item.getType(), item.getItemPrice(), cart.get(item));
+            System.out.println();
+        }
+        System.out.println("\n\t\tTotal Bill: " + cartValue(cart));
+    }
+
+    public double cartValue(Map<MenuItem, Integer> cart) {
+        double total = 0;
+        for(MenuItem item: cart.keySet()) {
+            total += item.getItemPrice() * cart.get(item);
+        }
+        return total;
     }
 }

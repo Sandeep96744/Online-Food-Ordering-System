@@ -7,6 +7,7 @@ import restaurantManagementModule.MenuItem;
 import restaurantManagementModule.Restaurant;
 
 import java.util.List;
+import java.util.Map;
 
 public class RestaurantServiceImplementation implements RestaurantService {
 
@@ -59,5 +60,10 @@ public class RestaurantServiceImplementation implements RestaurantService {
     @Override
     public List<Restaurant> findAllDeactivatedRestaurant() {
         return restaurantRepository.findAllDeactivatedRestaurant();
+    }
+
+    @Override
+    public void order(Map<MenuItem, Integer> cart) {
+        restaurantRepository.order(cart);
     }
 }

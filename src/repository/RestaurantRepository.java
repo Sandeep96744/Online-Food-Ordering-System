@@ -5,6 +5,7 @@ import restaurantManagementModule.MenuItem;
 import restaurantManagementModule.Restaurant;
 
 import java.util.List;
+import java.util.Map;
 
 public interface RestaurantRepository {
 
@@ -26,4 +27,5 @@ public interface RestaurantRepository {
 
     public List<Restaurant> findAllDeactivatedRestaurant();
 
+    public void order(Map<MenuItem, Integer> cart);
 }

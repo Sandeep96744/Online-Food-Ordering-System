@@ -13,6 +13,7 @@ public class Restaurant {
     private LocalTime closeTime;
     private boolean isActive;
     private List<MenuItem> menu;
+    List<Order> orders;
 
     public Restaurant(long id, String name, CuisineType cuisineType, String location, LocalTime openTime, LocalTime closeTime, boolean isActive) {
         this.id = id;
@@ -23,6 +24,7 @@ public class Restaurant {
         this.closeTime = closeTime;
         this.isActive = isActive;
         this.menu = new ArrayList<>();
+        this.orders = new ArrayList<>();
     }
 
     public long getId() {
@@ -89,6 +91,14 @@ public class Restaurant {
         this.menu = menu;
     }
 
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void addOrders(Order order) {
+        this.orders.add(order);
+    }
+
     @Override
     public String toString() {
         return "Restaurant Details:\n" +
@@ -104,7 +114,7 @@ public class Restaurant {
     public void displayMenu() {
         System.out.println("Welcome to " + this.getName() + ": A " + getClass().getSimpleName() + "!\nMenu Items:");
         for(MenuItem item: this.getMenu()) {
-            System.out.printf("%-25s%-15s₹%s", item.getItemName(), item.getType(), item.getItemPrice());
+            System.out.printf("%-25s%-20s₹%s", item.getItemName(), item.getType(), item.getItemPrice());
             System.out.println();
         }
         System.out.println();

@@ -37,4 +37,5 @@ public class MenuItem {
     public void setType(ItemType type) {
         this.type = type;
     }
+
 }
