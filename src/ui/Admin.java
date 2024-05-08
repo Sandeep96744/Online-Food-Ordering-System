@@ -38,7 +38,7 @@ public class Admin {
         // adding items in restaurant3
         repo.addRestaurant(restaurant3);
         repo.updateMenuItem(restaurant3, new MenuItem("Crispy Baby Corn", ItemType.VEG, 199.0));
-        repo.updateMenuItem(restaurant3, new MenuItem("Panner Chilli", ItemType.VEG, 299.0));
+        repo.updateMenuItem(restaurant3, new MenuItem("Paneer Chilli", ItemType.VEG, 299.0));
 
         // Finding all active restaurants
 //        List<Restaurant> restaurantList = repo.findAllActiveRestaurant();
@@ -93,7 +93,6 @@ public class Admin {
 
 //        customerService.addItem(restaurant1.getMenu().get(0), 1);
 //        customerService.reviewCartItem();
-
 
     }
 }
