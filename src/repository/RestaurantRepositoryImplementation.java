@@ -1,8 +1,7 @@
 package repository;
 
-import restaurantManagementModule.MenuItem;
-import restaurantManagementModule.Restaurant;
-import restaurantManagementModule.CuisineType;
+import restaurantManagementModule.*;
+import service.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +10,7 @@ import java.util.Map;
 public class RestaurantRepositoryImplementation implements RestaurantRepository {
 
     private Map<Long, Restaurant> restaurants;
+
 
     public RestaurantRepositoryImplementation() {
         restaurants = new HashMap<>();
@@ -63,14 +63,19 @@ public class RestaurantRepositoryImplementation implements RestaurantRepository 
     }
 
     @Override
-    public void order(Map<MenuItem, Integer> cart) {
-        System.out.println("\n\t***** Ordered Items *****");
+    public void order(int id, Customer customer, Map<MenuItem, Integer> cart, String address, String paymentType) {
+        System.out.println("\n***** Ordered Details *****");
+        System.out.println("Order ID: " + id);
         int i = 1;
         for(MenuItem item: cart.keySet()) {
             System.out.printf("%d. %s | %s | ₹%s | Quantity: %s", i++, item.getItemName(), item.getType(), item.getItemPrice(), cart.get(item));
             System.out.println();
         }
-        System.out.println("\n\t\tTotal Bill: " + cartValue(cart));
+        System.out.println("Total Bill: " + cartValue(cart));
+        System.out.println("Thank you for shopping with us!\nEnjoy your meal.");
+
+        Order order = new Order(id, customer, cart, address, paymentType);
+        assignOrder(order);
     }
 
     public double cartValue(Map<MenuItem, Integer> cart) {
@@ -79,5 +84,9 @@ public class RestaurantRepositoryImplementation implements RestaurantRepository 
             total += item.getItemPrice() * cart.get(item);
         }
         return total;
+    }
+
+    public void assignOrder(Order order) {
+        DeliveryAgentServiceImplementation.getInstance().addOrder(order);
     }
 }

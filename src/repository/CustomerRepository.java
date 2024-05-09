@@ -1,5 +1,6 @@
 package repository;
 
+import restaurantManagementModule.Customer;
 import restaurantManagementModule.MenuItem;
 
 public interface CustomerRepository {
@@ -11,5 +12,6 @@ public interface CustomerRepository {
 
     public double cartValue();
 
-    public void order();
+    public void order(Customer customer, String address, String paymentType);
+
 }

@@ -1,6 +1,7 @@
 package service;
 
 import restaurantManagementModule.CuisineType;
+import restaurantManagementModule.Customer;
 import restaurantManagementModule.MenuItem;
 import restaurantManagementModule.Restaurant;
 
@@ -21,5 +22,5 @@ public interface CustomerService {
 
     public List<Restaurant> findAllActiveRestaurant();
 
-    public void order();
+    public void order(Customer customer, String address, String paymentType);
 }

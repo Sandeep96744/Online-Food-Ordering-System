@@ -84,15 +84,20 @@ public class Admin {
 
         Restaurant restaurant = list.get(1);
         restaurant.displayMenu();
-        String item = "paneer chilli";
+        String item1 = "paneer chilli";
         List<MenuItem> menu = restaurant.getMenu();
-        MenuItem menuItem = menu.stream().filter(e -> e.getItemName().equalsIgnoreCase(item)).findAny().get();
-        customerService.addItem(menuItem, 1);
 
+        MenuItem menuItem1 = menu.stream().filter(e -> e.getItemName().equalsIgnoreCase(item1)).findAny().get();
+        customerService.addItem(menuItem1, 1);
+        customerService.reviewCartItem();
 
+        customerService.order(customer,"1st Floor Birla Garden", "Credit card");
 
-//        customerService.addItem(restaurant1.getMenu().get(0), 1);
-//        customerService.reviewCartItem();
+        String item2 = "crispy Baby corn";
+        MenuItem menuItem2 = menu.stream().filter(e -> e.getItemName().equalsIgnoreCase(item2)).findAny().get();
+        customerService.addItem(menuItem2, 3);
+        customerService.order(customer, "1ww33", "cash");
+
 
     }
 }

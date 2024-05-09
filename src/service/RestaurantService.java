@@ -1,6 +1,7 @@
 package service;
 
 import restaurantManagementModule.CuisineType;
+import restaurantManagementModule.Customer;
 import restaurantManagementModule.MenuItem;
 import restaurantManagementModule.Restaurant;
 
@@ -28,5 +29,5 @@ public interface RestaurantService {
 
     public List<Restaurant> findAllDeactivatedRestaurant();
 
-    public void order(Map<MenuItem, Integer> cart);
+    public void order(int i, Customer customer, Map<MenuItem, Integer> cart, String address, String paymentType);
 }
