@@ -96,8 +96,7 @@ public class Admin {
         String item2 = "crispy Baby corn";
         MenuItem menuItem2 = menu.stream().filter(e -> e.getItemName().equalsIgnoreCase(item2)).findAny().get();
         customerService.addItem(menuItem2, 3);
-        customerService.order(customer, "1ww33", "cash");
-
+        customerService.order(customer, "3 park street", "cash");
 
 
     }
