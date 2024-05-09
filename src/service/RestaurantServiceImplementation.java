@@ -3,6 +3,7 @@ package service;
 import repository.RestaurantRepository;
 import repository.RestaurantRepositoryImplementation;
 import restaurantManagementModule.CuisineType;
+import restaurantManagementModule.Customer;
 import restaurantManagementModule.MenuItem;
 import restaurantManagementModule.Restaurant;
 
@@ -63,7 +64,7 @@ public class RestaurantServiceImplementation implements RestaurantService {
     }
 
     @Override
-    public void order(Map<MenuItem, Integer> cart) {
-        restaurantRepository.order(cart);
+    public void order(int id, Customer customer, Map<MenuItem, Integer> cart, String address, String paymentType) {
+        restaurantRepository.order(id, customer, cart, address, paymentType);
     }
 }

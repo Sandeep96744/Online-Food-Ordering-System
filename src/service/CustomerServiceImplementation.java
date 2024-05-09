@@ -3,6 +3,7 @@ package service;
 import repository.CustomerRepository;
 import repository.CustomerRepositoryImplementation;
 import restaurantManagementModule.CuisineType;
+import restaurantManagementModule.Customer;
 import restaurantManagementModule.MenuItem;
 import restaurantManagementModule.Restaurant;
 
@@ -54,7 +55,7 @@ public class CustomerServiceImplementation implements CustomerService {
     }
 
     @Override
-    public void order() {
-        customerRepository.order();
+    public void order(Customer customer, String address, String paymentType) {
+        customerRepository.order(customer, address, paymentType);
     }
 }

@@ -1,5 +1,6 @@
 package repository;
 
+import restaurantManagementModule.Customer;
 import restaurantManagementModule.MenuItem;
 import service.RestaurantService;
 import service.RestaurantServiceImplementation;
@@ -9,6 +10,7 @@ import java.util.Map;
 
 public class CustomerRepositoryImplementation implements CustomerRepository {
 
+    static int id = 0;
     private Map<MenuItem, Integer> cart;
     RestaurantService restaurantService = new RestaurantServiceImplementation();
 
@@ -28,13 +30,13 @@ public class CustomerRepositoryImplementation implements CustomerRepository {
 
     @Override
     public void reviewCartItem() {
-        System.out.println("\n\t***** Cart Item Preview *****");
+        System.out.println("\n***** Cart Item Preview *****");
         int i = 1;
         for(MenuItem item: cart.keySet()) {
             System.out.printf("%d. %s | %s | ₹%s | Quantity: %s", i++, item.getItemName(), item.getType(), item.getItemPrice(), cart.get(item));
             System.out.println();
         }
-        System.out.println("\n\t\tCart Value: " + cartValue());
+        System.out.println("Cart Value: " + cartValue());
     }
 
     @Override
@@ -47,8 +49,8 @@ public class CustomerRepositoryImplementation implements CustomerRepository {
     }
 
     @Override
-    public void order() {
-        restaurantService.order(cart);
+    public void order(Customer customer, String address, String paymentType) {
+        restaurantService.order(id++, customer, cart, address, paymentType);
     }
 
 
