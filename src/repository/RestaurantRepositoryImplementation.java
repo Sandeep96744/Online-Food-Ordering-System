@@ -1,11 +1,13 @@
 package repository;
 
+import exception.RestaurantNotFoundException;
 import restaurantManagementModule.*;
 import service.*;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class RestaurantRepositoryImplementation implements RestaurantRepository {
 
@@ -37,19 +39,42 @@ public class RestaurantRepositoryImplementation implements RestaurantRepository 
         return restaurants.get(id);
     }
 
-    @Override
     public List<Restaurant> findRestaurantByLocation(String location) {
-        return restaurants.values().stream().filter(restaurant -> restaurant.getLocation().equalsIgnoreCase(location)).toList();
+        List<Restaurant> foundRestaurants = restaurants.values().stream()
+                .filter(restaurant -> restaurant.getLocation().equalsIgnoreCase(location))
+                .collect(Collectors.toList());
+
+        if (foundRestaurants.isEmpty()) {
+            throw new RestaurantNotFoundException("Restaurant not found for location: " + location);
+        }
+
+        return foundRestaurants;
     }
 
     @Override
     public List<Restaurant> findRestaurantByName(String name) {
-        return restaurants.values().stream().filter(restaurant -> restaurant.getName().equalsIgnoreCase(name)).toList();
+        List<Restaurant> foundRestaurants = restaurants.values().stream()
+                .filter(restaurant -> restaurant.getName().equalsIgnoreCase(name))
+                .collect(Collectors.toList());
+
+        if (foundRestaurants.isEmpty()) {
+            throw new RestaurantNotFoundException("Restaurant not found with name: " + name);
+        }
+
+        return foundRestaurants;
     }
 
     @Override
     public List<Restaurant> findRestaurantByType(CuisineType type) {
-        return restaurants.values().stream().filter(restaurant -> restaurant.getCuisineType().equals(type)).toList();
+        List<Restaurant> foundRestaurants = restaurants.values().stream()
+                .filter(restaurant -> restaurant.getCuisineType().equals(type))
+                .collect(Collectors.toList());
+
+        if (foundRestaurants.isEmpty()) {
+            throw new RestaurantNotFoundException("Restaurant not found for cuisine type: " + type);
+        }
+
+        return foundRestaurants;
     }
 
     @Override

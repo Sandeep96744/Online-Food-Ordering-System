@@ -41,7 +41,7 @@ public class Admin {
         repo.updateMenuItem(restaurant3, new MenuItem("Paneer Chilli", ItemType.VEG, 299.0));
 
         // Finding all active restaurants
-//        List<Restaurant> restaurantList = repo.findAllActiveRestaurant();
+        List<Restaurant> restaurantList = repo.findAllActiveRestaurant();
 //        System.out.println("Active Restaurants:");
 //        restaurantList.forEach(restaurant -> System.out.println(restaurant.getName()));
 
@@ -75,28 +75,28 @@ public class Admin {
 
 
 
-        Customer customer = new Customer("Karan");
-
-        CustomerService customerService = new CustomerServiceImplementation(repo);
-        List<Restaurant> list = customerService.findAllActiveRestaurant();
-        System.out.println("Active Restaurants:");
-        list.forEach(restaurant -> System.out.println(restaurant.getName()));
-
-        Restaurant restaurant = list.get(1);
-        restaurant.displayMenu();
-        String item1 = "paneer chilli";
-        List<MenuItem> menu = restaurant.getMenu();
-
-        MenuItem menuItem1 = menu.stream().filter(e -> e.getItemName().equalsIgnoreCase(item1)).findAny().get();
-        customerService.addItem(menuItem1, 1);
-        customerService.reviewCartItem();
-
-        customerService.order(customer,"1st Floor Birla Garden", "Credit card");
-
-        String item2 = "crispy Baby corn";
-        MenuItem menuItem2 = menu.stream().filter(e -> e.getItemName().equalsIgnoreCase(item2)).findAny().get();
-        customerService.addItem(menuItem2, 3);
-        customerService.order(customer, "3 park street", "cash");
+//        Customer customer = new Customer("Karan");
+//
+//        CustomerService customerService = new CustomerServiceImplementation(repo);
+//        List<Restaurant> list = customerService.findAllActiveRestaurant();
+//        System.out.println("Active Restaurants:");
+//        list.forEach(restaurant -> System.out.println(restaurant.getName()));
+//
+//        Restaurant restaurant = list.get(1);
+//        restaurant.displayMenu();
+//        String item1 = "paneer chilli";
+//        List<MenuItem> menu = restaurant.getMenu();
+//
+//        MenuItem menuItem1 = menu.stream().filter(e -> e.getItemName().equalsIgnoreCase(item1)).findAny().get();
+//        customerService.addItem(menuItem1, 1);
+//        customerService.reviewCartItem();
+//
+//        customerService.order(customer,"1st Floor Birla Garden", "Credit card");
+//
+//        String item2 = "crispy Baby corn";
+//        MenuItem menuItem2 = menu.stream().filter(e -> e.getItemName().equalsIgnoreCase(item2)).findAny().get();
+//        customerService.addItem(menuItem2, 3);
+//        customerService.order(customer, "3 park street", "cash");
 
     }
 }
