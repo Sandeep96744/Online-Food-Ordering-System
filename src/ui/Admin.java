@@ -15,13 +15,13 @@ public class Admin {
 
         // adding restaurants
         Restaurant restaurant1 = new FastFoodRestaurant(101, "Bigg Boss", "Kolkata",
-                LocalTime.parse("09:00"), LocalTime.parse("19:00"), true);
+                LocalTime.parse("09:00"), LocalTime.parse("19:00"), false);
 
         Restaurant restaurant2 = new FineDiningRestaurant(102, "Sanjha Chulha", "Delhi",
                 LocalTime.parse("09:00"), LocalTime.parse("20:00"), false);
 
         Restaurant restaurant3 = new FineDiningRestaurant(103, "Desi Lane", "Kolkata",
-                LocalTime.parse("09:00"), LocalTime.parse("19:00"), true);
+                LocalTime.parse("09:00"), LocalTime.parse("19:00"), false);
 
         // adding items in restaurant1
         repo.addRestaurant(restaurant1);
@@ -41,11 +41,11 @@ public class Admin {
         repo.updateMenuItem(restaurant3, new MenuItem("Paneer Chilli", ItemType.VEG, 299.0));
 
         // Finding all active restaurants
-//        List<Restaurant> restaurantList = repo.findAllActiveRestaurant();
-//        System.out.println("Active Restaurants:");
-//        restaurantList.forEach(restaurant -> System.out.println(restaurant.getName()));
+        List<Restaurant> restaurantList = repo.findAllActiveRestaurant();
+        System.out.println("Active Restaurants:");
+        restaurantList.forEach(restaurant -> System.out.println(restaurant.getName()));
 
-//
+
 //        // after deactivating restaurants, finding active ones
 //        repo.deActivateRestaurant(101);
 //        repo.activateRestaurant(102);
@@ -97,6 +97,7 @@ public class Admin {
         MenuItem menuItem2 = menu.stream().filter(e -> e.getItemName().equalsIgnoreCase(item2)).findAny().get();
         customerService.addItem(menuItem2, 3);
         customerService.order(customer, "3 park street", "cash");
+
 
 
     }

@@ -1,5 +1,6 @@
 package repository;
 
+import exception.RestaurantNotFoundException;
 import restaurantManagementModule.*;
 import service.*;
 
@@ -39,27 +40,47 @@ public class RestaurantRepositoryImplementation implements RestaurantRepository 
 
     @Override
     public List<Restaurant> findRestaurantByLocation(String location) {
-        return restaurants.values().stream().filter(restaurant -> restaurant.getLocation().equalsIgnoreCase(location)).toList();
+        List<Restaurant> restaurantList = restaurants.values().stream().filter(restaurant -> restaurant.getLocation().equalsIgnoreCase(location)).toList();
+        if(restaurantList.isEmpty())
+            throw new RestaurantNotFoundException("Oops! No Restaurants found with Location: " + location);
+
+        return restaurantList;
     }
 
     @Override
     public List<Restaurant> findRestaurantByName(String name) {
-        return restaurants.values().stream().filter(restaurant -> restaurant.getName().equalsIgnoreCase(name)).toList();
+        List<Restaurant> restaurantList = restaurants.values().stream().filter(restaurant -> restaurant.getName().equalsIgnoreCase(name)).toList();
+        if(restaurantList.isEmpty())
+            throw new RestaurantNotFoundException("Oops! No Restaurants found with Name: " + name);
+
+        return restaurantList;
     }
 
     @Override
     public List<Restaurant> findRestaurantByType(CuisineType type) {
-        return restaurants.values().stream().filter(restaurant -> restaurant.getCuisineType().equals(type)).toList();
+        List<Restaurant> restaurantList = restaurants.values().stream().filter(restaurant -> restaurant.getCuisineType().equals(type)).toList();
+        if(restaurantList.isEmpty())
+            throw new RestaurantNotFoundException("Oops! No Restaurants found with Type: " + type);
+
+        return restaurantList;
     }
 
     @Override
     public List<Restaurant> findAllActiveRestaurant() {
-        return restaurants.values().stream().filter(restaurant -> restaurant.isActive()).toList();
+        List<Restaurant> restaurantList = restaurants.values().stream().filter(restaurant -> restaurant.isActive()).toList();
+        if(restaurantList.isEmpty())
+            throw new RestaurantNotFoundException("Oops! All Restaurants are De-Active at this moment.");
+
+        return restaurantList;
     }
 
     @Override
     public List<Restaurant> findAllDeactivatedRestaurant() {
-        return restaurants.values().stream().filter(restaurant -> !restaurant.isActive()).toList();
+        List<Restaurant> restaurantList = restaurants.values().stream().filter(restaurant -> !restaurant.isActive()).toList();
+        if(restaurantList.isEmpty())
+            throw new RestaurantNotFoundException("Oops! All Restaurants are Active");
+
+        return restaurantList;
     }
 
     @Override
@@ -76,6 +97,7 @@ public class RestaurantRepositoryImplementation implements RestaurantRepository 
 
         Order order = new Order(id, customer, cart, address, paymentType);
         assignOrder(order);
+
     }
 
     public double cartValue(Map<MenuItem, Integer> cart) {
