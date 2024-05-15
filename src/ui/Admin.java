@@ -84,19 +84,19 @@ public class Admin {
 
         Restaurant restaurant = list.get(1);
         restaurant.displayMenu();
-        String item1 = "paneer chilli";
+        String item1 = "Paneer chilli";
         List<MenuItem> menu = restaurant.getMenu();
 
         MenuItem menuItem1 = menu.stream().filter(e -> e.getItemName().equalsIgnoreCase(item1)).findAny().get();
         customerService.addItem(menuItem1, 1);
         customerService.reviewCartItem();
 
-        customerService.order(customer,"1st Floor Birla Garden", "Credit card");
+        customerService.order(customer,"1st Floor, Birla Garden", "Credit card");
 
         String item2 = "crispy Baby corn";
         MenuItem menuItem2 = menu.stream().filter(e -> e.getItemName().equalsIgnoreCase(item2)).findAny().get();
         customerService.addItem(menuItem2, 3);
-        customerService.order(customer, "3 park street", "cash");
+        customerService.order(customer, "3/E, park street", "Cash");
 
 
 

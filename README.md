@@ -30,3 +30,4 @@ An online food ordering system is needed to facilitate the ordering and delivery
 - Handle exceptions like `RestaurantNotFoundException` and `OrderProcessingException` gracefully.
 - Use try-catch blocks to handle errors during order processing, such as invalid input or database connectivity issues.
 
+![alt text](<image data.png>)
