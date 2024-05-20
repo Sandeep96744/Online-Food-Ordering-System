@@ -12,10 +12,11 @@ public class CustomerRepositoryImplementation implements CustomerRepository {
 
     static int id = 0;
     private Map<MenuItem, Integer> cart;
-    RestaurantService restaurantService = new RestaurantServiceImplementation();
+    RestaurantService restaurantService;
 
     public CustomerRepositoryImplementation() {
         cart = new HashMap<>();
+        restaurantService = new RestaurantServiceImplementation();
     }
 
     @Override
