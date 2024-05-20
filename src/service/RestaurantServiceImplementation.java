@@ -19,12 +19,12 @@ public class RestaurantServiceImplementation implements RestaurantService {
         restaurantRepository.addRestaurant(restaurant);
     }
     @Override
-    public void activateRestaurant(long id) {
+    public void activateRestaurant(int id) {
         restaurantRepository.setActivationStatus(restaurantRepository.getRestaurantById(id), true);
     }
 
     @Override
-    public void deActivateRestaurant(long id) {
+    public void deActivateRestaurant(int id) {
         restaurantRepository.setActivationStatus(restaurantRepository.getRestaurantById(id), false);
     }
 
@@ -34,7 +34,7 @@ public class RestaurantServiceImplementation implements RestaurantService {
     }
 
     @Override
-    public Restaurant getRestaurantById(long id) {
+    public Restaurant getRestaurantById(int id) {
         return restaurantRepository.getRestaurantById(id);
     }
 

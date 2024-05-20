@@ -16,7 +16,7 @@ public interface RestaurantRepository {
 
     public void updateMenuItem(Restaurant restaurant, MenuItem item);
 
-    public Restaurant getRestaurantById(long id);
+    public Restaurant getRestaurantById(int id);
 
     public List<Restaurant> findRestaurantByLocation(String location);
 

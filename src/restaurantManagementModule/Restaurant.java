@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Restaurant {
-    private long id;
+    private int id;
     private String name;
     private CuisineType cuisineType;
     private String location;
@@ -15,7 +15,7 @@ public class Restaurant {
     private List<MenuItem> menu;
     List<Order> orders;
 
-    public Restaurant(long id, String name, CuisineType cuisineType, String location, LocalTime openTime, LocalTime closeTime, boolean isActive) {
+    public Restaurant(int id, String name, CuisineType cuisineType, String location, LocalTime openTime, LocalTime closeTime, boolean isActive) {
         this.id = id;
         this.name = name;
         this.cuisineType = cuisineType;
@@ -27,11 +27,11 @@ public class Restaurant {
         this.orders = new ArrayList<>();
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

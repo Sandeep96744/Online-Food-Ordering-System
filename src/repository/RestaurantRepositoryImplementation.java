@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class RestaurantRepositoryImplementation implements RestaurantRepository {
 
-    private Map<Long, Restaurant> restaurants;
+    private Map<Integer, Restaurant> restaurants;
 
 
     public RestaurantRepositoryImplementation() {
@@ -34,7 +34,7 @@ public class RestaurantRepositoryImplementation implements RestaurantRepository 
     }
 
     @Override
-    public Restaurant getRestaurantById(long id) {
+    public Restaurant getRestaurantById(int id) {
         return restaurants.get(id);
     }
 

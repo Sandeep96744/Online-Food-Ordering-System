@@ -11,13 +11,13 @@ import java.util.Map;
 public interface RestaurantService {
     public void addRestaurant(Restaurant restaurant);
 
-    public void activateRestaurant(long restaurantId);
+    public void activateRestaurant(int restaurantId);
 
-    public void deActivateRestaurant(long restaurantId);
+    public void deActivateRestaurant(int restaurantId);
 
     public void updateMenuItem(Restaurant restaurant, MenuItem item);
 
-    public Restaurant getRestaurantById(long id);
+    public Restaurant getRestaurantById(int id);
 
     public List<Restaurant> findRestaurantByLocation(String location);
 
